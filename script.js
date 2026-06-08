@@ -6,6 +6,9 @@ const images = [
 let outputDiv = document.getElementById("output");
 let errorDiv = document.querySelector(".error");
 let loadingDiv = document.createElement('div');
+let downloadBtn = document.getElementById("download-images-button");
+
+downloadBtn.addEventListener('click', getData);
 
 function Promise1(){
     return new Promise((resolve, reject) => {
@@ -46,19 +49,22 @@ function downloadImage(){
     return Promise.all([Promise1(), Promise2(), Promise3()]);
 }
 
-downloadImage().then((response) => {
-    console.log(response);
-    loadingDiv.remove();
-    response.forEach((elem) => {
-        let img = document.createElement('img');
-        img.setAttribute("src", elem);
-        outputDiv.appendChild(img);
+function getData(){
+    downloadImage().then((response) => {
+        console.log(response);
+        loadingDiv.remove();
+        response.forEach((elem) => {
+            let img = document.createElement('img');
+            img.setAttribute("src", elem);
+            outputDiv.appendChild(img);
+        })
+    }).catch((error) => {
+        loadingDiv.remove();    
+        let errorDiv = document.createElement('div');
+        errorDiv.setAttribute("id", "error");
+        errorDiv.textContent = "Something went wrong";
+        outputDiv.appendChild(errorDiv);
+        console.log(error);
     })
-}).catch((error) => {
-    loadingDiv.remove();    
-    let errorDiv = document.createElement('div');
-    errorDiv.setAttribute("id", "error");
-    errorDiv.textContent = "Something went wrong";
-    outputDiv.appendChild(errorDiv);
-    console.log(error);
-})
+}
+
