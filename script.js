@@ -13,7 +13,7 @@ downloadBtn.addEventListener('click', getData);
 function Promise1(){
     return new Promise((resolve, reject) => {
         fetch(`${images[0].url}`).then((response) => {
-            resolve(response.url);
+            resolve(images[0].url);
         }).catch((error) => {
             console.log(error);
         })
@@ -24,7 +24,7 @@ function Promise1(){
 function Promise2(){
     return new Promise((resolve, reject) => {
         fetch(`${images[1].url}`).then((response) => {
-            resolve(response.url);
+            resolve(images[1].url);
         }).catch((error) => {
             console.log(error);
         })
@@ -35,7 +35,7 @@ function Promise2(){
 function Promise3(){
     return new Promise((resolve, reject) => {
         fetch(`${images[2].url}`).then((response) => {
-            resolve(response.url);
+            resolve(images[2].url);
         }).catch((error) => {
             console.log(error);
         })
